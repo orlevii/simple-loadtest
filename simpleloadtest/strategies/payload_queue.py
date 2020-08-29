@@ -2,6 +2,7 @@ import multiprocessing as mp
 import os
 from datetime import datetime
 from multiprocessing import Process
+from time import sleep
 
 from .base import StrategyBase
 
@@ -26,6 +27,7 @@ class PayloadQueue(StrategyBase):
 
     def join_workers(self):
         self.inputs_queue.join()
+        sleep(0.5)
 
     def load_test(self, worker_id, payloads_queue: mp.Queue, result_queue: mp.Queue):
         pid = os.getpid()
