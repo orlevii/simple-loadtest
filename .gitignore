@@ -1,0 +1,7 @@
+.idea/
+.coverage
+*.pyc
+.DS_Store
+*.egg-info/
+htmlcov
+dist
