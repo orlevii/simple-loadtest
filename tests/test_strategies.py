@@ -25,7 +25,7 @@ class StrategiesTest(unittest.TestCase):
             self.assertLess(delta, 1)
 
     def test_payload_queue(self):
-        # with capture_output() as _:
-        stats = PayloadQueue(request_fn=self.req_fn).start(self.payloads)
+        with capture_output() as _:
+            stats = PayloadQueue(request_fn=self.req_fn).start(self.payloads)
 
-        self.assertEqual(stats.total_requests, len(self.payloads))
+            self.assertEqual(stats.total_requests, len(self.payloads))

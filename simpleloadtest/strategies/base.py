@@ -25,16 +25,15 @@ class StrategyBase:
                 self.ps_workers.append(p)
 
             self.join_workers()
-            for p in self.ps_workers:
-                p.terminate()
-
             total_time_delta = datetime.utcnow() - before
             total_time_seconds = total_time_delta.total_seconds()
 
-            times = []
+            self.terminate_workers()
 
+            times = []
             error_count = 0
             total_requests = 0
+
             while not result_queue.empty():
                 total_requests += 1
                 result, pid = result_queue.get()
@@ -49,8 +48,8 @@ class StrategyBase:
                          times=times,
                          error_count=error_count)
         except Exception as e:
-            for p in self.ps_workers:
-                p.terminate()
+            print(e)
+            self.terminate_workers()
 
     @abstractmethod
     def init_inputs(self, raw_payloads):
@@ -63,3 +62,7 @@ class StrategyBase:
     @abstractmethod
     def join_workers(self):
         pass
+
+    def terminate_workers(self):
+        for p in self.ps_workers:
+            p.terminate()

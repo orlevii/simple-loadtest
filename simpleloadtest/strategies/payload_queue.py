@@ -27,7 +27,10 @@ class PayloadQueue(StrategyBase):
 
     def join_workers(self):
         self.inputs_queue.join()
-        sleep(0.5)
+
+    def terminate_workers(self):
+        sleep(0.25)
+        super().terminate_workers()
 
     def load_test(self, worker_id, payloads_queue: mp.Queue, result_queue: mp.Queue):
         pid = os.getpid()
