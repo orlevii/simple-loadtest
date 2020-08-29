@@ -13,6 +13,7 @@ class StrategiesTest(unittest.TestCase):
     @staticmethod
     def req_fn(payload):
         sleep(0.01)
+        return payload
 
     def test_fixed_time(self):
         with capture_output() as _:
