@@ -21,7 +21,7 @@ class StrategiesTest(unittest.TestCase):
                               loadtest_time=test_time).start(self.payloads)
 
             delta = abs(stats.total_time_sec - test_time)
-            self.assertLess(delta, 0.5)
+            self.assertLess(delta, 1)
 
     def test_payload_queue(self):
         with capture_output() as _:
