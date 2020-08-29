@@ -6,7 +6,7 @@ exec(open('simpleloadtest/__version__.py').read())
 
 setup(
     # Needed for dependency graph on GitHub
-    # install_requires=['falcon==2.*', 'validr==1.2.*'],
+    install_requires=['numpy==1.*'],
 
     # Package version - taken from code, cannot be in setup.cfg file
     version=__version__,
